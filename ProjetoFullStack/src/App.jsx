@@ -8,7 +8,6 @@ function App() {
     <div className="container">
       <Header />
       <SearchForm />
-      <h2 className="popular">Mais Populares</h2>
       <RecipeList />
     </div>
   );

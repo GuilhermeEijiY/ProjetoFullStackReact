@@ -6,6 +6,7 @@ const initialState = {
   recipes: [],
   loading: false,
   error: null,
+  query: '',
 };
 
 function reducer(state, action) {
@@ -16,6 +17,8 @@ function reducer(state, action) {
       return { ...state, loading: false, recipes: action.payload };
     case 'ERROR':
       return { ...state, loading: false, error: action.payload };
+    case 'SET_QUERY':
+      return { ...state, query: action.payload };
     default:
       return state;
   }
@@ -25,6 +28,7 @@ export function RecipesProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const fetchRecipes = async (query = '') => {
+    dispatch({ type: 'SET_QUERY', payload: query });
     dispatch({ type: 'LOADING' });
     try {
       const res = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`);
