@@ -14,7 +14,7 @@ export default function RecipeList() {
       {state.recipes.map((recipe) => (
         <div className="recipe-card" key={recipe.idMeal}>
           <img src={recipe.strMealThumb} alt={recipe.strMeal} />
-          <h3>{recipe.strMeal}</h3>
+          <h3 className="recipe-title">{recipe.strMeal}</h3>
         </div>
       ))}
     </div>

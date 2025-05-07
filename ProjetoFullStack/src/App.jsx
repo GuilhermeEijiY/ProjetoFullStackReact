@@ -1,12 +1,14 @@
 import Header from './components/Header';
 import SearchForm from './components/SearchForm';
 import RecipeList from './components/RecipeList';
+import './App.css';
 
 function App() {
   return (
     <div className="container">
       <Header />
       <SearchForm />
+      <h2 className="popular">Mais Populares</h2>
       <RecipeList />
     </div>
   );
