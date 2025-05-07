@@ -24,7 +24,9 @@ export default function SearchForm() {
     <form onSubmit={handleSubmit(onSubmit)}>
       <input {...register('search')} placeholder="Digite o nome da receita" />
       <button type="submit">Buscar</button>
-      {errors.search && <p>{errors.search.message}</p>}
+      <div className="error-message">
+        {errors.search?.message || '\u00A0'}
+      </div>
     </form>
   );
 }

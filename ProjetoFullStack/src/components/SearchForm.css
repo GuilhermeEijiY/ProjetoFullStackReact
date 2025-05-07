@@ -27,3 +27,9 @@ form {
     margin-top: 0.5rem;
   }
   
+  .error-message {
+    height: 0;
+    font-size: 0.9rem;
+    color: red;
+    margin-top: 0;
+  }
