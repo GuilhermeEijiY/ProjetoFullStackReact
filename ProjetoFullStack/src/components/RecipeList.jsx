@@ -3,10 +3,14 @@ import { RecipesContext } from '../contexts/RecipesContext';
 import './RecipeList.css';
 
 export default function RecipeList() {
+  // Acessa o estado do contexto
   const { state } = useContext(RecipesContext);
   console.log(state); 
 
+  // Exibe mensagem de carregamento
   if (state.loading) return <p>Carregando...</p>;
+
+  // Exibe mensagem de erro
   if (state.error) return <p>{state.error}</p>;
 
   return (

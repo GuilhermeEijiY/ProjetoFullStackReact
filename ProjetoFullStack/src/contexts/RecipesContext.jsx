@@ -1,6 +1,6 @@
 import { createContext, useReducer, useEffect } from 'react';
 
-// Ações nomeadas para maior clareza e reutilização
+// Constante para padronizar os tipos de ação
 const ACTIONS = {
   LOADING: 'LOADING',
   SUCCESS: 'SUCCESS',
@@ -8,8 +8,10 @@ const ACTIONS = {
   SET_QUERY: 'SET_QUERY',
 };
 
+// Criação do contexto
 export const RecipesContext = createContext();
 
+// Estado inicial do reducer
 const initialState = {
   recipes: [],
   loading: false,
@@ -17,7 +19,7 @@ const initialState = {
   query: '',
 };
 
-// Reducer mais explícito
+// Função reducer para gerenciar os estados com base em ações
 function recipesReducer(state, action) {
   const { type, payload } = action;
 
@@ -51,29 +53,32 @@ function recipesReducer(state, action) {
   }
 }
 
+// Componente Provider que disponibiliza o estado e funções para toda a aplicação
 export function RecipesProvider({ children }) {
   const [state, dispatch] = useReducer(recipesReducer, initialState);
 
+  // Função que realiza a busca de receitas na API externa
   const fetchRecipes = async (query = '') => {
-    dispatch({ type: ACTIONS.SET_QUERY, payload: query });
-    dispatch({ type: ACTIONS.LOADING });
+    dispatch({ type: ACTIONS.SET_QUERY, payload: query }); // Armazena o termo de busca
+    dispatch({ type: ACTIONS.LOADING }); // Ativa loading
 
     try {
       const res = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`);
       const data = await res.json();
 
       if (data.meals) {
-        dispatch({ type: ACTIONS.SUCCESS, payload: data.meals });
+        dispatch({ type: ACTIONS.SUCCESS, payload: data.meals }); // Sucesso: salva as receitas
       } else {
         dispatch({ type: ACTIONS.ERROR, payload: 'Nenhuma receita encontrada.' });
       }
     } catch (err) {
-      dispatch({ type: ACTIONS.ERROR, payload: 'Erro ao buscar receitas.' });
+      dispatch({ type: ACTIONS.ERROR, payload: 'Erro ao buscar receitas.' }); // Erro na requisição
     }
   };
 
+  // Efeito que busca receitas populares na montagem do app
   useEffect(() => {
-    fetchRecipes();
+    fetchRecipes(); // Busca inicial sem query
   }, []);
 
   return (
