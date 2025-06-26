@@ -5,7 +5,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import './SearchForm.css';
 
-// Definição do schema de validação com Yup
 const searchSchema = yup.object({
   search: yup
     .string()
@@ -14,26 +13,25 @@ const searchSchema = yup.object({
 });
 
 export default function SearchForm() {
-  // Acessa a função de busca do contexto
   const { fetchRecipes } = useContext(RecipesContext);
 
   // Inicializa o formulário com validação Yup
   const {
-    register, // Registra o input para rastreamento do valor
-    handleSubmit, // Função que lida com o envio do formulário
-    formState: { errors, isSubmitting }, // objeto com estado do formulário
-    reset, // Reseta os campos do formulário
+    register, 
+    handleSubmit, 
+    formState: { errors, isSubmitting }, 
+    reset, 
   } = useForm({
-    resolver: yupResolver(searchSchema), // Valida com Yup
+    resolver: yupResolver(searchSchema), 
     defaultValues: {
-      search: '', // Valor inicial do campo para vazio
+      search: '', 
     },
   });
 
   // Função chamada quando o formulário é submetido
   const onSubmit = ({ search }) => {
-    fetchRecipes(search); // Chamada da API com o termo de busca
-    reset(); // limpa o campo após submissão
+    fetchRecipes(search); 
+    reset(); 
   };
 
   return (
