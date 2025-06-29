@@ -1,20 +1,9 @@
 import { useContext } from 'react';
 import { RecipesContext } from '../contexts/RecipesContext';
 import './RecipeList.css';
+import recipePlaceholder from '../assets/recipe.png';
 
-// Caminho para imagem local padrão (em public/)
-const DEFAULT_IMAGE_URL = '/sem-imagem.png';
-
-// Função auxiliar para validar URLs
-function isValidUrl(url) {
-    try {
-        if (!url || typeof url !== 'string') return false;
-        new URL(url);
-        return true;
-    } catch (_) {
-        return false;
-    }
-}
+const DEFAULT_IMAGE_URL = recipePlaceholder; 
 
 export default function RecipeList() {
     const { state } = useContext(RecipesContext);
@@ -36,7 +25,7 @@ export default function RecipeList() {
                         key={String(recipe.id || recipe.externalId || Math.random())}
                     >
                         <img
-                            src={isValidUrl(recipe.imageUrl) ? recipe.imageUrl : DEFAULT_IMAGE_URL}
+                            src={recipe.imageUrl || DEFAULT_IMAGE_URL}
                             alt={recipe.name}
                             crossOrigin="anonymous"
                             onError={(e) => {
