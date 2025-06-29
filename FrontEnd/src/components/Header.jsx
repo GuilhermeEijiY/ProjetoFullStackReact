@@ -1,21 +1,21 @@
 import { useContext } from 'react';
-import { Link } from 'react-router-dom'; // Importe Link do react-router-dom
-import { AuthContext } from '../contexts/AuthContext'; // Importe AuthContext
-import './Header.css'; // Certifique-se de que este arquivo CSS existe e tem os estilos para o header
+import { Link } from 'react-router-dom'; 
+import { AuthContext } from '../contexts/AuthContext'; 
+import './Header.css'; 
 
 export default function Header() {
-    const { authState, logout } = useContext(AuthContext); // Use useContext para acessar o estado de autenticação e a função logout
+    const { authState, logout } = useContext(AuthContext); 
 
     return (
         <header className="header">
             <h1 className="header-title">Busca de Receitas</h1>
             <nav className="header-nav">
-                {authState.isAuthenticated ? ( // Mostra links diferentes se o usuário estiver autenticado
+                {authState.isAuthenticated ? ( 
                     <>
-                        <Link to="/recipes">Buscar</Link> {/* Link para a página de busca */}
-                        <Link to="/add-recipe">Adicionar Receita</Link> {/* Link para a página de adicionar receita */}
-                        <span className="welcome-user">Olá, {authState.user?.username}!</span> {/* Exibe o nome do usuário */}
-                        <button onClick={logout} className="logout-button">Sair</button> {/* Botão de logout */}
+                        <Link to="/recipes">Buscar</Link> 
+                        <Link to="/add-recipe">Adicionar Receita</Link> 
+                        <span className="welcome-user">Olá, {authState.user?.username}!</span> 
+                        <button onClick={logout} className="logout-button">Sair</button> 
                     </>
                 ) : ( // Mostra link de login se o usuário NÃO estiver autenticado
                     <Link to="/login">Entrar</Link>
