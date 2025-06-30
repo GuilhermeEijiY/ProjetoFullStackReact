@@ -1,5 +1,5 @@
 const express = require('express');
-const bodyParser = require('body-parser'); // Pode ser substituído por express.json()
+const bodyParser = require('body-parser'); 
 const cors = require('cors');
 const compression = require('compression');
 require('dotenv').config();
@@ -7,11 +7,11 @@ const routes = require('./src/routes');
 const { setupDatabase } = require('./src/config/db');
 const mongoose = require('./src/config/db');
 const { createUser } = require('./src/models/User');
-const path = require('path'); // <<< ADICIONE ESTA LINHA
+const path = require('path'); 
 
 
 const app = express();
-const PORT = process.env.PORT || 8080; // Use 8080 conforme seu .env
+const PORT = process.env.PORT || 8080; 
 
 app.use(cors({
     origin: 'http://localhost:5173',
