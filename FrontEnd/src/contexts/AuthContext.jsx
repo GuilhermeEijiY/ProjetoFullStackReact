@@ -57,7 +57,7 @@ export function AuthProvider({ children }) {
     const [state, dispatch] = useReducer(authReducer, authInitialState);
     const navigate = useNavigate();
 
-    const API_BASE_URL = 'http://localhost:8080/api'; 
+    const API_BASE_URL = 'https://localhost:8443/api'; 
 
     const login = async (username, password) => {
         dispatch({ type: AUTH_ACTIONS.LOGIN_REQUEST });

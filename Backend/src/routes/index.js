@@ -9,7 +9,7 @@ const { searchRecipes, createRecipe } = require('../models/Recipe');
 const JWT_SECRET = process.env.JWT_SECRET || 'sua_super_secreta_jwt_key';
 const TOKEN_EXPIRATION = '1h';
 
-const DEFAULT_RECIPE_IMAGE = 'http://localhost:8080/uploads/recipe.png';
+const DEFAULT_RECIPE_IMAGE = 'http://localhost:8443/uploads/recipe.png';
 
 const authenticateToken = (req, res, next) => {
     const authHeader = req.headers['authorization'];
@@ -35,6 +35,7 @@ const logRequest = (action, details) => {
 };
 
 router.post('/login',
+    // SANITIZER: .trim() remove espaços em branco, .escape() converte caracteres HTML
     body('username').trim().notEmpty().withMessage('Nome de usuário é obrigatório.').escape(),
     body('password').notEmpty().withMessage('Senha é obrigatória.'),
     async (req, res) => {

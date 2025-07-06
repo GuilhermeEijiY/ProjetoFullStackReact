@@ -13,7 +13,7 @@ export default function AddRecipeForm() {
     const { authState } = useContext(AuthContext);
     const [submitMessage, setSubmitMessage] = useState(null);
 
-    const API_BASE_URL = 'http://localhost:8080/api'; 
+    const API_BASE_URL = 'https://localhost:8443/api'; 
 
     const {
         register,

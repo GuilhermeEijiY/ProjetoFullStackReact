@@ -55,7 +55,7 @@ export function RecipesProvider({ children }) {
     const [state, dispatch] = useReducer(recipesReducer, initialState);
     const { authState } = useContext(AuthContext); 
 
-    const API_BASE_URL = 'http://localhost:8080/api';;
+    const API_BASE_URL = 'https://localhost:8443/api';;
 
     const fetchRecipes = async (query = '') => {
         dispatch({ type: ACTIONS.SET_QUERY, payload: query }); 
